@@ -1,5 +1,5 @@
 #!/bin/bash
-vs="v0.2"
+vs="v0.3"
 ex=`basename $0`
 function u { echo Usage: $ex "<file name>"; }
 function v { echo $ex $vs; }
@@ -8,5 +8,5 @@ if [ $1 == "-v" ]; then v; exit 0; fi;
 if [ ! -f $1 ]; then echo $1 "does not exist. Try again."; exit 2; fi;
 fn=`basename $1`
 echo "Uploading: $fn"
-curl -X POST -s --data-binary @$1 "https://bins.io/POST/$fn"; echo; 
+curl -s -F "file=@$1" https://bins.io/api/$fn"; echo; 
 
